@@ -526,14 +526,15 @@
     </footer>
 
 
-    <script src="../assets/dist/js/bootstrap.bundle.min.js" class="astro-vvvwv3sm"></script>
+    <script src="./assets/dist/js/bootstrap.bundle.min.js" class="astro-vvvwv3sm"></script>
     <script>
+        const form = document.getElementById("contactForm");
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
 
             const formData = new FormData(form);
 
-            const scriptURL = 'https://script.google.com/macros/s/AKfycbwvHAPE_Z_721p83seSZDQfdmk8Twmg9ViQVip01sNo-zQT6mNkri5xgi_9d4llTk4CYA/exec';
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbwXH8x9rO7UlA8PBAWP1BoghcZDbhSQb8tYYy46RPfwPolj6-xzk_bQaiE9msPAWnUuEA/exec';
 
             try {
                 const response = await fetch(scriptURL, {
