@@ -528,34 +528,24 @@
 
     <script src="../assets/dist/js/bootstrap.bundle.min.js" class="astro-vvvwv3sm"></script>
     <script>
-        const form = document.getElementById('contactForm');
-
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
 
-            const data = {
-                Name: form.name.value,
-                Email: form.email.value,
-                Mobile: form.mobile.value,
-                Message: form.message.value
-            };
+            const formData = new FormData(form);
 
-            // Your deployed Google Apps Script Web App URL
-            const scriptURL = 'https://script.google.com/macros/s/AKfycbwEjJ6Rl25AoO0u7Fp_l4xb4rRm9y0ipp8OTZPQxNDkn_2ihWZ6RHDr8DUVrIS1f-5M/exec';
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbwvHAPE_Z_721p83seSZDQfdmk8Twmg9ViQVip01sNo-zQT6mNkri5xgi_9d4llTk4CYA/exec';
 
             try {
                 const response = await fetch(scriptURL, {
                     method: 'POST',
-                    mode: 'cors', // Ensures cross-origin request works
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(data)
+                    body: formData,  // Use FormData directly without headers
+                    mode: 'cors'     // Optional as it's the default for cross-origin POST
                 });
 
                 if (!response.ok) throw new Error('Network response was not ok');
 
                 const result = await response.json();
+
                 document.getElementById('formResponse').innerHTML =
                     '<span class="text-success">Thank you! Your message has been sent successfully.</span>';
                 form.reset();
@@ -565,6 +555,7 @@
                     '<span class="text-danger">Error submitting form. Please try again.</span>';
             }
         });
+
     </script>
 
 
